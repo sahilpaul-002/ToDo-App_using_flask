@@ -1,0 +1,169 @@
+{% extends 'base.html' %} {% block body %}
+<!--    Navbar  -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Todo App</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
+          >Disabled</a
+        >
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+
+<!-- Alert Message  -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        <strong>{{ category.capitalize() }}:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% if "Successful" in alert %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success! : </strong>{{alert}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% elif "Unsuccesful" in alert %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error! : </strong> {{alert}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% else %} <!-- No alert message to show --> {% endif %}
+
+<!--    Forms  -->
+<div class="container mt-3 mb-4">
+  <h2 class="TableHeading mb-2 text-center">Add a To-Do</h2>
+  <form action="/" method="POST">
+    <div class="form-group">
+      <label for="todoTitle">ToDo Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="todoTitle"
+        id="todoTitle"
+        aria-describedby="todoTitleHelp"
+      />
+    </div>
+    <div class="form-group">
+      <label for="todoDescription">ToDo Description</label>
+      <input
+        type="text"
+        class="form-control"
+        name="todoDescription"
+        id="todoDescription"
+      />
+    </div>
+    <button type="submit" class="btn btn-outline-success">Add ToDo</button>
+  </form>
+</div>
+
+<!--    Table  -->
+<div class="container mt-4 mb-5">
+  <h2 class="TableHeading mt-4 mb-2 text-center">Your To-Do's</h2>
+  <!-- Check if there are no rows in the database -->
+  {% if rows | length == 0 %}
+  <div class="alert alert-secondary" role="alert">
+    No todo's found! Please add a todo.
+  </div>
+  {% else %}
+  <table class="table text-center">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Sno</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through the rows and display them in the table -->
+      {% for todo in rows %}
+      <!--    Table   -->
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{todo.todoTitle}}</td>
+        <td>{{todo.todoDescription}}</td>
+        <td>{{todo.createdDate}}</td>
+        <td>
+          <a href="/update?id={{todo.sno}}"
+            ><button type="button" class="btn btn-outline-dark mx-1">
+              Update
+            </button></a
+          >
+          <a href="/delete?id={{todo.sno}}"
+            ><button type="button" class="btn btn-outline-danger mx-1">
+              Delete
+            </button></a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+{% endblock body %}
