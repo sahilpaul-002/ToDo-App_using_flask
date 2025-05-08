@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-4">
+    <div class="card-body p-5">
+      <div class="text-center mb-4">
+        <h2 class="fw-bold">
+          <i class="bi bi-info-circle-fill me-2"></i>About This App
+        </h2>
+        <p class="text-muted fs-5">
+          A clean and responsive ToDo List app built with Flask and Bootstrap.
+        </p>
+      </div>
+
+      <hr class="my-4" />
+
+      <div class="mb-4 text-center">
+        <h4 class="fw-semibold"><i class="bi bi-star-fill me-2 text-warning"></i>Key Features</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><i class="bi bi-plus-circle me-2 text-success"></i>CRUD Operations on Databse</li>
+              <li class="list-group-item"><i class="bi bi-check-circle me-2 text-primary"></i>Storing To Do List of User</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><i class="bi bi-trash3 me-2 text-danger"></i>Alert Messages for User</li>
+              <li class="list-group-item"><i class="bi bi-phone me-2 text-info"></i>Responsive UI using Bootstrap</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-4" />
+
+      <div class="mb-4 text-center">
+        <h4 class="fw-semibold"><i class="bi bi-tools me-2 text-secondary"></i>Technologies Used</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <span class="badge text-secondary border border-secondary mb-2">Python (Flask)</span>
+            <span class="badge text-secondary border border-secondary mb-2">Bootstrap 5</span>
+            </div>
+            <div class="col-md-6">
+            <span class="badge text-secondary border border-secondary mb-2">Jinja2</span>
+            <span class="badge text-secondary border border-secondary mb-2">SQLite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container px-5 text-center">
+        <div class="alert alert-info">
+        <strong>Why this app?</strong> <br>
+        It's a beginner-friendly full-stack project that helped me explore backend development, routing, templates, and deployment.
+      </div>
+      </div>
+
+      <div class="text-center mt-2 mb-4">
+        <a href="/" class="btn btn-outline-primary btn-lg rounded-pill px-4 mb-5">
+          <i class="bi bi-house-door-fill me-2"></i>Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

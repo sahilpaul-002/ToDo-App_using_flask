@@ -1,0 +1,28 @@
+{% block form %}
+    <!--    Forms  -->
+<div class="container mt-3 mb-4">
+  <h2 class="TableHeading mb-2 text-center">Add a To-Do</h2>
+  <form action="/" method="POST">
+    <div class="form-group">
+      <label for="todoTitle">ToDo Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="todoTitle"
+        id="todoTitle"
+        aria-describedby="todoTitleHelp"
+      />
+    </div>
+    <div class="form-group">
+      <label for="todoDescription">ToDo Description</label>
+      <input
+        type="text"
+        class="form-control"
+        name="todoDescription"
+        id="todoDescription"
+      />
+    </div>
+    <button type="submit" class="btn btn-outline-success">Add ToDo</button>
+  </form>
+</div>
+{% endblock form %}

@@ -137,6 +137,10 @@ def deleteData():
         flash("Delete Unsuccessful", "danger")
         return redirect(url_for("insertAndDisplayData"))
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 
 # Run the application
 if __name__ == "__main__":

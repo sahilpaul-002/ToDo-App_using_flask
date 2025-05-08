@@ -1,0 +1,48 @@
+{% block dataTable %}
+    <!--    Table  -->
+<div class="container mt-4 mb-5">
+  <h2 class="TableHeading mt-4 mb-2 text-center">Your To-Do's</h2>
+  <!-- Check if there are no rows in the database -->
+  {% if rows | length == 0 %}
+  <div class="alert alert-secondary" role="alert">
+    No todo's found! Please add a todo.
+  </div>
+  {% else %}
+  <table class="table text-center">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Sno</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through the rows and display them in the table -->
+      {% for todo in rows %}
+      <!--    Table   -->
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{todo.todoTitle}}</td>
+        <td>{{todo.todoDescription}}</td>
+        <td>{{todo.createdDate}}</td>
+        <td>
+          <a href="/update?id={{todo.sno}}"
+            ><button type="button" class="btn btn-outline-dark mx-1">
+              Update
+            </button></a
+          >
+          <a href="/delete?id={{todo.sno}}"
+            ><button type="button" class="btn btn-outline-danger mx-1">
+              Delete
+            </button></a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+{% endblock dataTable %}
